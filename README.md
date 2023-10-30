@@ -1,1 +1,1 @@
-Readme for 0x0 python Hello word
+0x00-python-hello_world
