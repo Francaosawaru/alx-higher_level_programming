@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 
 if _name_ == "_main_":
-    """print all names defined by hidden_4 module."""
 import hidden_4
-names = dir(hidden_4)
-for name in names:
-if name[:2] != "__":
-print(name)
+for variable in dir(hidden_4):
+if variable[0] != '__' and variable[1] != '_':
+print(variable)
