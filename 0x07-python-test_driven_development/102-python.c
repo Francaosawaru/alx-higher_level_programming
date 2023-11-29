@@ -1,34 +1,29 @@
-#include <stdio.h>
-#include <string.h>
-#include <Python.h>
+#!/usr/bin/python3
+"""defines function to scalar divde matrix"""
 
-/**
- * print_python_string - Prints string information
- *
- * @p: Python Object
- * Return: no return
- */
-void print_python_string(PyObject *p)
-{
 
-	PyObject *str, *repr;
-
-	(void)repr;
-	printf("[.] string object info\n");
-
-	if (strcmp(p->ob_type->tp_name, "str"))
-	{
-		printf("  [ERROR] Invalid String Object\n");
-		return;
-	}
-
-	if (PyUnicode_IS_COMPACT_ASCII(p))
-		printf("  type: compact ascii\n");
-	else
-		printf("  type: compact unicode object\n");
-
-	repr = PyObject_Repr(p);
-	str = PyUnicode_AsEncodedString(p, "utf-8", "~E~");
-	printf("  length: %ld\n", PyUnicode_GET_SIZE(p));
-	printf("  value: %s\n", PyBytes_AsString(str));
-}
+def matrix_divided(matrix, div):
+    """divides matrix by scalar integer, rounded to two decimal places"""
+    import decimal
+    error_msg = "matrix must be a matrix (list of lists) of integers/floats"
+    if type(matrix) is not list:
+        raise TypeError(error_msg)
+    len_rows = []
+    row_count = 0
+    for row in matrix:
+        if type(row) is not list:
+            raise TypeError(error_msg)
+        len_rows.append(len(row))
+        for element in row:
+            if type(element) not in [int, float]:
+                raise TypeError(error_msg)
+        row_count += 1
+    if len(set(len_rows)) > 1:
+        raise TypeError("Each row of the matrix must have the same size")
+    if type(div) not in [int, float]:
+        raise TypeError("div must be a number")
+    if int(div) == 0:
+        raise ZeroDivisionError("division by zero")
+    new_matrix = list(map(lambda row:
+                          list(map(lambda x: round(x/div, 2), row)), matrix))
+    return new_matrix
