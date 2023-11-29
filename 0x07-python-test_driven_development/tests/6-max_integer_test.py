@@ -1,62 +1,70 @@
 #!/usr/bin/python3
+"""
+    Unittest for max_integer([..])
 
-"""Unittests for max_integer([..])."""
+    it checks a list and returns the highest value in the list
+
+"""
+
 
 import unittest
 max_integer = __import__('6-max_integer').max_integer
 
-
 class TestMaxInteger(unittest.TestCase):
-    """Define unittests for max_integer([..])."""
+    """
 
-    def test_ordered_list(self):
-        """Test an ordered list of integers."""
-        ordered = [1, 2, 3, 4]
-        self.assertEqual(max_integer(ordered), 4)
+       This is a unittest class for the task 6-max_integer
 
-    def test_unordered_list(self):
-        """Test an unordered list of integers."""
-        unordered = [1, 2, 4, 3]
-        self.assertEqual(max_integer(unordered), 4)
+       it checks multiple possible testcases
 
-    def test_max_at_begginning(self):
-        """Test a list with a beginning max value."""
-        max_at_beginning = [4, 3, 2, 1]
-        self.assertEqual(max_integer(max_at_beginning), 4)
+    """
+
+
+    def test_list(self):
+        """
+            Checks if the largest int in list1 is number
+        """
+
+        list1 = [-1, 3, 5, 7, 9 ,-12 ,35 ,13 ,46 ,68 ,24 ,-57 ,24, 35, 4, 53, 24]
+        number = 68
+        self.assertEqual(max_integer(list1), number)
 
     def test_empty_list(self):
-        """Test an empty list."""
-        empty = []
-        self.assertEqual(max_integer(empty), None)
+        """
+            Checks case for an empty list
+        """
 
-    def test_one_element_list(self):
-        """Test a list with a single element."""
-        one_element = [7]
-        self.assertEqual(max_integer(one_element), 7)
+        self.assertEqual(max_integer([]), None)
 
-    def test_floats(self):
-        """Test a list of floats."""
-        floats = [1.53, 6.33, -9.123, 15.2, 6.0]
-        self.assertEqual(max_integer(floats), 15.2)
+    def test_string_in_list(self):
+        """
+            Checks case for a string in the list
+        """
+        with self.assertRaises(TypeError):
+            max_integer([0, 1, '2'])
 
-    def test_ints_and_floats(self):
-        """Test a list of ints and floats."""
-        ints_and_floats = [1.53, 15.5, -9, 15, 6]
-        self.assertEqual(max_integer(ints_and_floats), 15.5)
+    def test_string_as_list(self):
+        """
+            Checks case for a string as list
+        """
 
-    def test_string(self):
-        """Test a string."""
-        string = "Brennan"
-        self.assertEqual(max_integer(string), 'r')
+        self.assertEqual(max_integer('Hello'), 'o')
 
-    def test_list_of_strings(self):
-        """Test a list of strings."""
-        strings = ["Brennan", "is", "my", "name"]
-        self.assertEqual(max_integer(strings), "name")
+    def test_one_list(self):
+        """
+            Checks case for single element list
+        """
 
-    def test_empty_string(self):
-        """Test an empty string."""
-        self.assertEqual(max_integer(""), None)
+        self.assertEqual(max_integer([74]), 74)
 
-if _name_ == '_main_':
+    def test_expando_list(self):
+        """
+            Checks for the largest int in the list
+        """
+
+        list1 = [-1, 3, 5, 7, 9 , -70,35 ,13 ,46 ,68 ,24 ,-57 ,24, 35, 4, 53, 24]
+        self.assertEqual(max_integer([i ** 2 for i in list1]), 70 * 70)
+
+
+if __name__ == '__main__':
     unittest.main()
