@@ -23,8 +23,8 @@ def matrix_divided(matrix, div):
         Each row of the matrix must be of the same size
         Div must be a number (integer or float)
         Div can’t be equal to 0
-        All elements of the matrix should be divided by div, rounded to 
-        2 decimal places 
+All elements of the matrix should be divided by div, rounded to
+2 decimal places
 
     """
 
