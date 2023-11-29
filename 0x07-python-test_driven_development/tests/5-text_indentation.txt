@@ -130,7 +130,7 @@ Checking for newline at beginning:
 	 Whatcha up to?
 	 <BLANKLINE>
 
-Checking for newline in middle:
+Checking for newline in middleg
 	 >>> text_indentation("Hello \n . How are you?")
 	Hello
 	  .
