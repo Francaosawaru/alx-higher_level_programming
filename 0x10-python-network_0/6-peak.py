@@ -3,34 +3,22 @@
 Defines a peak-finding algorithm
 """
 
+# Corrected import statement
+from importlib import import_module
 
-def find_peak(list_of_integers):
-        """
-            Finds the highest number in a list of integers
+# Dynamic import of find_peak function from 6-peak.py
+peak_module = import_module('6-peak')
+        find_peak = peak_module.find_peak
 
-                Args:
-                        list_of_integers: List (int)
-                            Return:
-                                    the highest number
-                                        """
+        # Test function for find_peak
+        def test_find_peak():
+                """
+                    Test function for find_peak
+                        """
+                            peak = find_peak([1, 2, 4, 6, 3])
+                                print(peak)  # Example output: 6
 
-                                            if not list_of_integers:
-                                                        return None
+                                # Execute the test function
+                                if __name__ == "__main__":
+                                    test_find_peak()
 
-                                                        if len(list_of_integers) == 1:
-                                                                    return list_of_integers[0]
-                                                                    elif len(list_of_integers) == 2:
-                                                                                return max(list_of_integers)
-                                                                                else:
-                                                                                            left = 0
-                                                                                                    right = len(list_of_integers) - 1
-
-                                                                                                            while left < right:
-                                                                                                                            mid = (left + right) // 2
-
-                                                                                                                                        if list_of_integers[mid] < list_of_integers[mid + 1]:
-                                                                                                                                                            left = mid + 1
-                                                                                                                                                                        else:
-                                                                                                                                                                                            right = mid
-
-                                                                                                                                                                                                    return list_of_integers[left]
